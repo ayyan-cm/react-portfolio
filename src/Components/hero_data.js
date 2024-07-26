@@ -16,7 +16,7 @@ export const EDUCATION = [
   {
     place: "Kumaraguru College of Technology",
     location: "Coimbatore",
-    Received: "12th Grade",
+    Received: "Bachular of Engineering in Computer Science and Engineering",
     score: "7.51 CGPA",
     year: "2021-2025",
   },

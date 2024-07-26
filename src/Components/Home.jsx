@@ -10,14 +10,18 @@ export default function Home() {
       </div>
       <div className="flex flex-col w-full md:w-1/2">
         <div>
-          <h2 className="text-2xl font-thin mb-4 lg:text-5xl">Ayyanraj C</h2>
-          <span className="font-thin text-sm lg:text-base">
-            <span className=" text-lg lg:text-2xl">Full Stack Developer</span>{" "}
-            with strong ideas on frontend technologies and focus on backend
-            technologies. My commitment to continuous learning drives me to
-            deliver high-quality, user-centric applications and motivates to
-            learn and adapt new technologies.
-          </span>
+          <h2 className="text-2xl font-thin m-4 text-center lg:text-5xl lg:text-start lg:mx-0">
+            Ayyanraj C
+          </h2>
+          <div className="mx-5 lg:mx-0">
+            <span className="font-thin text-sm lg:text-base">
+              <span className=" text-lg lg:text-2xl">Full Stack Developer</span>{" "}
+              with strong ideas on frontend technologies and focus on backend
+              technologies. My commitment to continuous learning drives me to
+              deliver high-quality, user-centric applications and motivates to
+              learn and adapt new technologies.
+            </span>
+          </div>
         </div>
         <div className="flex flex-wrap justify-start my-5 ">
           <div className="border rounded-2xl px-3 py-1 text-center m-2">

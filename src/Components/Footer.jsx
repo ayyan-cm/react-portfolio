@@ -3,11 +3,13 @@ import githubIcon from "../assets/github.png";
 import linkedinIcon from "../assets/linkedin.png";
 import twitterIcon from "../assets/twitter.png";
 import mailIcon from "../assets/mail.png";
+import locationPin from "../assets/location.png";
 
 export default function Footer() {
   return (
-    <div className=" right-10 bottom-5 ">
+    <div className="mb-5">
       <div>
+        <div className="text-center font-bold mb-5">Let{"'"}s Get in Touch</div>
         <div>
           <ul className="flex justify-evenly">
             <li>
@@ -29,6 +31,10 @@ export default function Footer() {
         </div>
         <div className=" font-thin mt-2">
           Looking forward to hearing from you ✨
+        </div>
+        <div className="text-xs flex justify-center mt-2">
+          <img src={locationPin} className="w-3 h-3 invert" />
+          <span>&nbsp;&nbsp;Coimbatore</span>
         </div>
       </div>
     </div>
