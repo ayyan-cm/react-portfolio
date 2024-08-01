@@ -10,7 +10,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col w-full md:w-1/2">
         <div>
-          <h2 className="text-2xl font-thin m-4 text-center lg:text-5xl lg:text-start lg:mx-0">
+          <h2 className="text-2xl font-thin m-5 lg:mx-0 text-center lg:text-5xl md:text-start">
             Ayyanraj C
           </h2>
           <div className="mx-5 lg:mx-0">
@@ -23,12 +23,16 @@ export default function Home() {
             </span>
           </div>
         </div>
-        <div className="flex flex-wrap justify-start my-5 ">
-          <div className="border rounded-2xl px-3 py-1 text-center m-2">
-            Resume
+        <div className="flex justify-center md:justify-start text-sm lg:text-base my-3 mx-5 lg:mx-0">
+          <div className="text-center  mr-4">
+            <button className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-2xl text-sm px-4 py-2 text-center me-2 mb-2">
+              Resume
+            </button>
           </div>
-          <div className="border rounded-2xl px-3 py-1 text-center m-2">
-            Contact
+          <div className="text-center">
+            <button className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-2xl text-sm px-4 py-2 text-center me-2 mb-2">
+              Contact
+            </button>
           </div>
         </div>
       </div>

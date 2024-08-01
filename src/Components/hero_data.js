@@ -1,3 +1,7 @@
+import clock from "../assets/thumbnails/clock.png";
+import _2048 from "../assets/thumbnails/2048.png";
+import portfolio from "../assets/thumbnails/portfolio.png";
+
 export const EDUCATION = [
   {
     place: "Kn Boys Hr Sec School",
@@ -28,19 +32,26 @@ export const PROJECTS = [
     used: ["HTML", "CSS", "JavaScript"],
     github: "",
     link: "",
+    thumbnail: _2048,
   },
   {
     name: "Digital Clock",
     used: ["React"],
     github: "",
     link: "",
+    thumbnail: clock,
   },
   {
     name: "Portfolio",
     used: ["React", "Tailwind", "Framer motion"],
     github: "",
     link: "",
+    thumbnail: portfolio,
   },
 ];
 
 export const EXPERIENCE = [];
+
+export const SKILLS = [];
+
+export const PASSIONS = [];

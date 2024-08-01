@@ -1,31 +1,41 @@
-import instaIcon from "../assets/instagram.png";
-import githubIcon from "../assets/github.png";
-import linkedinIcon from "../assets/linkedin.png";
-import twitterIcon from "../assets/twitter.png";
-import mailIcon from "../assets/mail.png";
-import locationPin from "../assets/location.png";
+import instaIcon from "../assets/icons/instagram.png";
+import githubIcon from "../assets/icons/github.png";
+import linkedinIcon from "../assets/icons/linkedin.png";
+import twitterIcon from "../assets/icons/twitter.png";
+import mailIcon from "../assets/icons/mail.png";
+import locationPin from "../assets/icons/location.png";
 
 export default function Footer() {
   return (
-    <div className="mb-5">
-      <div>
-        <div className="text-center font-bold mb-5">Let{"'"}s Get in Touch</div>
+    <div className=" flex justify-center mt-5 border-t-2 border-t-zinc-800 p-5 pb-0 m-7 mb-0 md:m-12 lg:mx-20">
+      <div className="w-fit">
+        <div className="text-center font-bold mb-5 ">
+          Let{"'"}s Get in Touch
+        </div>
         <div>
           <ul className="flex justify-evenly">
-            <li>
-              <img className="w-6" src={linkedinIcon} alt="LinkedIn" />
+            <li className=" cursor-pointer">
+              <a href="https://www.linkedin.com/in/ayyanraj-c-5561a5222/">
+                <img className="w-6" src={linkedinIcon} alt="LinkedIn" />
+              </a>
             </li>
-            <li>
-              <img className="w-6" src={githubIcon} alt="GitHub" />
+            <li className=" cursor-pointer">
+              <a href="https://github.com/ayyan-cm">
+                <img className="w-6" src={githubIcon} alt="GitHub" />
+              </a>
             </li>
             <li>
               <img className="w-6" src={twitterIcon} alt="Twitter" />
             </li>
-            <li>
-              <img className="w-6" src={instaIcon} alt="Instagram" />
+            <li className=" cursor-pointer">
+              <a href="https://www.instagram.com/ayyanrajc/">
+                <img className="w-6" src={instaIcon} alt="Instagram" />
+              </a>
             </li>
-            <li>
-              <img className="w-6" src={mailIcon} alt="Email" />
+            <li className=" cursor-pointer">
+              <a href="mailto:cayyanraj@gmail.com">
+                <img className="w-6" src={mailIcon} alt="Email" />
+              </a>
             </li>
           </ul>
         </div>

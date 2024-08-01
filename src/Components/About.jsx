@@ -2,7 +2,7 @@ import { EDUCATION } from "./hero_data";
 
 export default function About() {
   return (
-    <div className="text-center mt-5 border-t-2 border-t-zinc-800 p-5 m-7 lg:m-20">
+    <div className="text-center mt-5 border-t-2 border-t-zinc-800 p-5 pb-0 m-7 mb-0 md:m-12 lg:mx-20">
       <h2 className="text-2xl lg:text-3xl">About</h2>
       <div className="mt-5">
         <span className="lg:p-20">
@@ -17,7 +17,7 @@ export default function About() {
         <h3 className="text-l lg:text-xl mt-5 mb-2">Education</h3>
         <div>
           {EDUCATION.map((education, index) => (
-            <div key={index} className="flex grid-col-2 space-x-5 mb-10">
+            <div key={index} className="flex grid-col-2 space-x-5 mb-10 ">
               <div className="w-1/2 text-end lg:mr-20">
                 <p>{education.year}</p>
               </div>
