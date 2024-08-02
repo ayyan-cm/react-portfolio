@@ -30,22 +30,22 @@ export const PROJECTS = [
   {
     name: "2048 Game",
     used: ["HTML", "CSS", "JavaScript"],
-    github: "",
-    link: "",
+    github: "https://github.com/ayyan-cm/2048",
+    link: "https://ayyan-cm.github.io/2048/",
     thumbnail: _2048,
   },
   {
     name: "Digital Clock",
     used: ["React"],
-    github: "",
-    link: "",
+    github: "https://github.com/ayyan-cm/digital-clock",
+    link: "https://digital-clock-tau-lovat.vercel.app/",
     thumbnail: clock,
   },
   {
     name: "Portfolio",
     used: ["React", "Tailwind", "Framer motion"],
-    github: "",
-    link: "",
+    github: "https://github.com/ayyan-cm/react-portfolio",
+    link: "https://ayyan-portfolio.vercel.app/",
     thumbnail: portfolio,
   },
 ];
