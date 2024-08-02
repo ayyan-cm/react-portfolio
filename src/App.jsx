@@ -13,8 +13,8 @@ export default function App() {
       </header>
       <main>
         <Home />
-        <Project />
         <About />
+        <Project />
       </main>
       <footer>
         <Footer />

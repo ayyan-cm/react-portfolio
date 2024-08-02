@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useDrag } from "@use-gesture/react";
 import { PROJECTS } from "./hero_data";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 export default function Project() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -17,28 +19,46 @@ export default function Project() {
 
   const bind = useDrag(({ swipe: [swipeX] }) => {
     if (swipeX === 1) {
-      console.log("1");
       nextProject();
     } else if (swipeX === -1) {
       prevProject();
     }
   });
 
+  const { ref: carouselRef, inView: carouselInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   const centerStyle =
-    "relative flex flex-col items-center justify-center w-40 h-40 md:w-52 md:h-52 lg:w-60 lg:h-60 rounded-lg my-5  text-white hover:scale-110 transition-transform duration-300 ease-in-out";
+    "relative flex flex-col items-center justify-center w-40 h-40 md:w-52 md:h-52 lg:w-60 lg:h-60 rounded-lg my-5 text-white hover:scale-110 transition-transform duration-300 ease-in-out";
   const sideStyle =
     "flex flex-col items-center justify-center w-20 h-40 md:w-42 md:h-52 lg:w-60 lg:h-60 rounded-lg my-5 scale-75 hover:cursor-pointer";
 
   return (
-    <div className="flex flex-col text-center mt-5 border-t-2 border-t-zinc-800 p-5 m-7 md:m-12 lg:mx-20">
-      <div>
+    <div
+      className="flex flex-col text-center mt-5 border-t-2 border-t-zinc-800 p-5 m-7 md:m-12 lg:mx-20"
+      ref={carouselRef}
+    >
+      <motion.div
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 50 }}
+        animate={carouselInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 1 }}
+      >
         <h2 className="text-2xl lg:text-3xl">Projects</h2>
-      </div>
+      </motion.div>
 
       {/* Project Carousel */}
       <div {...bind()} className="touch-none">
         <div className="flex justify-center items-center">
-          <div className="hidden md:block">
+          <motion.div
+            initial={{ x: 100, opacity: 0 }}
+            animate={
+              carouselInView ? { x: 0, opacity: 1 } : { x: 100, opacity: 0 }
+            }
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
             <button onClick={prevProject} aria-label="Previous Project">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -55,8 +75,8 @@ export default function Project() {
                 />
               </svg>
             </button>
-          </div>
-          <div
+          </motion.div>
+          <motion.div
             className={sideStyle}
             style={{
               backgroundImage: `url(${
@@ -68,8 +88,24 @@ export default function Project() {
               backgroundPosition: "center",
             }}
             onClick={prevProject}
-          ></div>
-          <div className={centerStyle}>
+            initial={{ x: 100, opacity: 0, scale: 1 }}
+            animate={
+              carouselInView
+                ? { x: 0, opacity: 1, scale: 0.75 }
+                : { x: 100, opacity: 0, scale: 1 }
+            }
+            transition={{ duration: 1, delay: 1 }}
+          ></motion.div>
+          <motion.div
+            className={centerStyle}
+            initial={{ opacity: 0, scale: 0.75 }}
+            animate={
+              carouselInView
+                ? { opacity: 1, scale: 1 }
+                : { opacity: 0, scale: 0.75 }
+            }
+            transition={{ duration: 0.5, delay: 1 }}
+          >
             <div
               className="absolute inset-0 rounded-lg opacity-25"
               style={{
@@ -97,8 +133,8 @@ export default function Project() {
             >
               Link
             </a>
-          </div>
-          <div
+          </motion.div>
+          <motion.div
             className={sideStyle}
             style={{
               backgroundImage: `url(${
@@ -109,8 +145,21 @@ export default function Project() {
               backgroundPosition: "center",
             }}
             onClick={nextProject}
-          ></div>
-          <div className="hidden md:block">
+            initial={{ x: -100, opacity: 0, scale: 1 }}
+            animate={
+              carouselInView
+                ? { x: 0, opacity: 1, scale: 0.75 }
+                : { x: -100, opacity: 0, scale: 1 }
+            }
+            transition={{ duration: 1, delay: 1 }}
+          ></motion.div>
+          <motion.div
+            initial={{ x: -100, opacity: 0 }}
+            animate={
+              carouselInView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }
+            }
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
             <button onClick={nextProject} aria-label="Next Project">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -127,9 +176,9 @@ export default function Project() {
                 />
               </svg>
             </button>
-          </div>
+          </motion.div>
         </div>
-        {/* Project Carousel Pointer*/}
+        {/* Project Carousel Pointer */}
         <div>
           <div className="flex justify-center mt-4">
             {PROJECTS.map((_, index) => (
@@ -138,7 +187,7 @@ export default function Project() {
                 onClick={() => setCurrentIndex(index)}
                 className={`${
                   index === currentIndex
-                    ? "bg-white -scale-x-150 w-4 translate-x-0 ease duration-300 "
+                    ? "bg-white -scale-x-150 w-4 translate-x-0 ease duration-300"
                     : "bg-gray-500"
                 } w-2 h-2 rounded-full mx-2 focus:outline-none`}
               ></button>
