@@ -1,15 +1,15 @@
-import hero from "../assets/hero_2.png";
+import hero from "../assets/hero.png";
 import { motion } from "framer-motion";
 
 export default function Home() {
   const text = "Ayyanraj C";
 
   return (
-    <div className="flex flex-wrap items-center overflow-hidden lg:px-10">
+    <div className="flex flex-wrap items-center overflow-hidden pt-20 lg:px-10">
       {/* Image Section */}
       <div className="w-full md:w-1/2 md:px-20">
         <motion.div
-          className="flex justify-center"
+          className="flex justify-center px-20"
           initial={{
             opacity: 0,
             y: 50,
@@ -17,7 +17,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <img src={hero} alt="hero" className="overflow-auto rounded-full" />
+          <img src={hero} alt="hero" className="rounded-full" />
         </motion.div>
       </div>
 
