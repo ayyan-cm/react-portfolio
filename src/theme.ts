@@ -24,24 +24,24 @@ export const createAppTheme = (darkMode: boolean) =>
     palette: {
       mode: darkMode ? "dark" : "light",
       primary: {
-        main: darkMode ? "#ffffff" : "#1a1a1a",
-        light: darkMode ? "#f5f5f5" : "#333333",
-        dark: darkMode ? "#e0e0e0" : "#000000",
+        main: darkMode ? "#ffffff" : "#2563eb", // Bright blue for light mode
+        light: darkMode ? "#f5f5f5" : "#60a5fa", // Lighter blue
+        dark: darkMode ? "#e0e0e0" : "#1d4ed8", // Darker blue
       },
       secondary: {
-        main: "#64b5f6",
-        light: "#90caf9",
-        dark: "#42a5f5",
+        main: darkMode ? "#64b5f6" : "#0ea5e9", // Sky blue for light mode
+        light: darkMode ? "#90caf9" : "#38bdf8", // Lighter sky blue
+        dark: darkMode ? "#42a5f5" : "#0284c7", // Darker sky blue
       },
       background: {
-        default: darkMode ? "#0a0a0a" : "#ffffff",
-        paper: darkMode ? "#121212" : "#f8f9fa",
+        default: darkMode ? "#0a0a0a" : "#f8fafc", // Very light blue-grey
+        paper: darkMode ? "#121212" : "#ffffff",
       },
       text: {
-        primary: darkMode ? "#ffffff" : "#1a1a1a",
-        secondary: darkMode ? "#b3b3b3" : "#666666",
+        primary: darkMode ? "#ffffff" : "#1e293b", // Slate-900 for better contrast
+        secondary: darkMode ? "#b3b3b3" : "#475569", // Slate-600 for secondary text
       },
-      divider: darkMode ? "#1e1e1e" : "#e0e0e0",
+      divider: darkMode ? "#1e1e1e" : "#e2e8f0", // Slate-200 for subtle dividers
     },
     typography: {
       fontFamily: [
@@ -111,10 +111,10 @@ export const createAppTheme = (darkMode: boolean) =>
       gradients: {
         primary: darkMode
           ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-          : "linear-gradient(135deg, #1976d2 0%, #1565c0 100%)",
+          : "linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)", // Blue gradient for light mode
         secondary: darkMode
           ? "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
-          : "linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%)",
+          : "linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%)", // Lighter blue gradient
       },
     },
     components: {
@@ -129,14 +129,14 @@ export const createAppTheme = (darkMode: boolean) =>
               width: "8px",
             },
             "&::-webkit-scrollbar-track": {
-              background: darkMode ? "#0a0a0a" : "#f5f5f5",
+              background: darkMode ? "#0a0a0a" : "#F3F4F6", // Scrollbar track for light mode
             },
             "&::-webkit-scrollbar-thumb": {
-              background: darkMode ? "#333" : "#ccc",
+              background: darkMode ? "#333" : "#D1D5DB", // Scrollbar thumb for light mode
               borderRadius: "4px",
             },
             "&::-webkit-scrollbar-thumb:hover": {
-              background: darkMode ? "#555" : "#999",
+              background: darkMode ? "#555" : "#9CA3AF", // Scrollbar thumb hover for light mode
             },
           },
           "@font-face": [
@@ -179,7 +179,9 @@ export const createAppTheme = (darkMode: boolean) =>
             transition: "all 0.3s ease",
             "&:hover": {
               transform: "scale(1.1)",
-              backgroundColor: "rgba(100, 181, 246, 0.1)",
+              backgroundColor: darkMode
+                ? "rgba(100, 181, 246, 0.1)"
+                : "rgba(59, 130, 246, 0.08)", // Adjusted hover for light mode
             },
           },
         },

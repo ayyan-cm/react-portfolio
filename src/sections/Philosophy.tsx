@@ -67,39 +67,62 @@ const Philosophy = () => {
               }}
             >
               <Card
-                sx={{
+                sx={(theme) => ({
                   height: "100%",
-                  backgroundColor: "rgba(18, 18, 18, 0.6)",
+                  backgroundColor:
+                    theme.palette.mode === "dark"
+                      ? "rgba(18, 18, 18, 0.6)"
+                      : "rgba(248, 250, 252, 0.8)", // Light blue-grey background
                   backdropFilter: "blur(10px)",
-                  border: "1px solid rgba(255, 255, 255, 0.1)",
+                  border: "1px solid",
+                  borderColor:
+                    theme.palette.mode === "dark"
+                      ? "rgba(255, 255, 255, 0.1)"
+                      : "rgba(226, 232, 240, 0.6)", // Subtle border for light mode
                   borderRadius: 3,
                   transition: "all 0.3s ease",
                   "&:hover": {
                     transform: "translateY(-8px)",
-                    boxShadow: "0 20px 40px rgba(100, 181, 246, 0.15)",
-                    borderColor: "rgba(100, 181, 246, 0.3)",
+                    backgroundColor:
+                      theme.palette.mode === "dark"
+                        ? "rgba(18, 18, 18, 0.8)"
+                        : "rgba(255, 255, 255, 0.95)", // Slightly whiter on hover
+                    boxShadow:
+                      theme.palette.mode === "dark"
+                        ? "0 20px 40px rgba(100, 181, 246, 0.15)"
+                        : "0 20px 40px rgba(148, 163, 184, 0.15)", // Softer shadow for light mode
+                    borderColor:
+                      theme.palette.mode === "dark"
+                        ? "rgba(100, 181, 246, 0.3)"
+                        : "rgba(37, 99, 235, 0.2)", // Blue tinted border on hover
                   },
-                }}
+                })}
               >
                 <CardContent sx={{ p: 4, textAlign: "left" }}>
                   <Typography
                     variant="h4"
-                    sx={{
+                    sx={(theme) => ({
                       mb: 3,
                       fontWeight: 600,
-                      color: "text.primary",
+                      color:
+                        theme.palette.mode === "dark"
+                          ? "text.primary"
+                          : "primary.dark", // Darker blue for better contrast
                       lineHeight: 1.3,
-                    }}
+                    })}
                   >
                     {principle.title}
                   </Typography>
                   <Typography
                     variant="body1"
-                    sx={{
-                      color: "text.secondary",
+                    sx={(theme) => ({
+                      color:
+                        theme.palette.mode === "dark"
+                          ? "text.secondary"
+                          : "text.primary", // Better contrast for description
                       lineHeight: 1.7,
                       fontSize: "1.1rem",
-                    }}
+                    })}
                   >
                     {principle.description}
                   </Typography>

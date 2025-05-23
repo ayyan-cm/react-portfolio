@@ -102,7 +102,12 @@ const Contact = () => {
 
           <div>
             <Box
-              sx={{ display: "flex", justifyContent: "center", gap: 3, mb: 8 }}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                gap: 3,
+                mb: 8,
+              }}
             >
               {contact.social.map((social, index) => (
                 <IconButton
@@ -111,20 +116,40 @@ const Contact = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  sx={{
-                    color: "text.secondary",
-                    backgroundColor: "rgba(255, 255, 255, 0.05)",
-                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                  sx={(theme) => ({
+                    color:
+                      theme.palette.mode === "dark"
+                        ? "text.secondary"
+                        : "primary.main",
+                    backgroundColor:
+                      theme.palette.mode === "dark"
+                        ? "rgba(255, 255, 255, 0.05)"
+                        : "rgba(37, 99, 235, 0.05)",
+                    border: "1px solid",
+                    borderColor:
+                      theme.palette.mode === "dark"
+                        ? "rgba(255, 255, 255, 0.1)"
+                        : "rgba(37, 99, 235, 0.1)",
                     borderRadius: 2,
                     p: 2,
                     "&:hover": {
                       color: "secondary.main",
-                      backgroundColor: "rgba(100, 181, 246, 0.1)",
-                      borderColor: "rgba(100, 181, 246, 0.3)",
+                      backgroundColor:
+                        theme.palette.mode === "dark"
+                          ? "rgba(100, 181, 246, 0.1)"
+                          : "rgba(37, 99, 235, 0.1)", // Enhanced blue background on hover
+                      borderColor:
+                        theme.palette.mode === "dark"
+                          ? "rgba(100, 181, 246, 0.3)"
+                          : "rgba(37, 99, 235, 0.2)", // Enhanced border on hover
                       transform: "translateY(-4px)",
+                      boxShadow:
+                        theme.palette.mode === "dark"
+                          ? "0 8px 24px rgba(100, 181, 246, 0.15)"
+                          : "0 8px 24px rgba(37, 99, 235, 0.08)", // Soft shadow for light mode
                     },
                     transition: "all 0.3s ease",
-                  }}
+                  })}
                   aria-label={`Visit ${social.platform} profile`}
                 >
                   {getIcon(social.icon)}

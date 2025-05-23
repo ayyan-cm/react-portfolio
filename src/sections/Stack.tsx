@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { Box, Typography, Chip } from "@mui/material";
+import { Box, Typography, Paper } from "@mui/material";
 import { gsap } from "gsap";
 import SectionWrapper from "../components/SectionWrapper";
 import TechIcon from "../components/TechIcon";
@@ -7,21 +7,21 @@ import { portfolioData } from "../data/content";
 
 const Stack = () => {
   const { techStack } = portfolioData;
-  const chipsRef = useRef<HTMLDivElement>(null);
+  const iconsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const chips = chipsRef.current?.children;
-    if (!chips) return;
+    const icons = iconsRef.current?.children;
+    if (!icons) return;
 
     // Set initial state
-    gsap.set(chips, {
+    gsap.set(icons, {
       opacity: 0,
       y: 30,
       scale: 0.8,
     });
 
     // Create staggered animation
-    gsap.to(chips, {
+    gsap.to(icons, {
       opacity: 1,
       y: 0,
       scale: 1,
@@ -29,7 +29,7 @@ const Stack = () => {
       stagger: 0.1,
       ease: "power2.out",
       scrollTrigger: {
-        trigger: chipsRef.current,
+        trigger: iconsRef.current,
         start: "top 80%",
         once: true,
       },
@@ -63,44 +63,83 @@ const Stack = () => {
           {techStack.title}
         </Typography>
         <Box
-          ref={chipsRef}
+          ref={iconsRef}
           sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 2,
-            justifyContent: "center",
-            maxWidth: "800px",
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "repeat(2, 1fr)",
+              sm: "repeat(3, 1fr)",
+              md: "repeat(5, 1fr)",
+            },
+            gap: 4,
+            maxWidth: "1000px",
             mx: "auto",
+            px: 2,
           }}
         >
           {techStack.technologies.map((tech, index) => (
-            <Chip
+            <Paper
               key={index}
-              icon={<TechIcon iconName={tech.icon} size="small" />}
-              label={tech.name}
-              variant="outlined"
-              sx={{
-                fontSize: "1rem",
-                fontWeight: 500,
-                px: 2,
-                py: 1,
-                height: "auto",
-                color: "text.primary",
-                borderColor: "text.secondary",
-                backgroundColor: "rgba(100, 181, 246, 0.05)",
-                "&:hover": {
-                  borderColor: "secondary.main",
-                  backgroundColor: "rgba(100, 181, 246, 0.15)",
-                  transform: "translateY(-2px)",
-                  boxShadow: "0 4px 20px rgba(100, 181, 246, 0.3)",
-                },
+              elevation={0}
+              sx={(theme) => ({
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 2,
+                p: 3,
+                backgroundColor:
+                  theme.palette.mode === "dark"
+                    ? "rgba(100, 181, 246, 0.05)"
+                    : "rgba(37, 99, 235, 0.02)", // Subtle blue tint for light mode
+                borderRadius: 2,
+                border: "1px solid",
+                borderColor: "divider",
                 transition: "all 0.3s ease",
-                "& .MuiChip-icon": {
-                  color: "secondary.main",
-                  marginLeft: "8px",
+                "&:hover": {
+                  transform: "translateY(-8px)",
+                  backgroundColor:
+                    theme.palette.mode === "dark"
+                      ? "rgba(100, 181, 246, 0.1)"
+                      : "rgba(37, 99, 235, 0.05)", // Slightly stronger blue tint on hover
+                  borderColor: "secondary.main",
+                  boxShadow:
+                    theme.palette.mode === "dark"
+                      ? "0 8px 24px rgba(100, 181, 246, 0.15)"
+                      : "0 8px 24px rgba(37, 99, 235, 0.08)", // Softer shadow for light mode
+                  "& .icon": {
+                    color: "secondary.main",
+                    transform: "scale(1.1)",
+                  },
+                  "& .text": {
+                    color: "primary.main",
+                  },
                 },
-              }}
-            />
+              })}
+            >
+              <Box
+                className="icon"
+                sx={{
+                  color: "text.primary",
+                  transition: "all 0.3s ease",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <TechIcon iconName={tech.icon} size="large" />
+              </Box>
+              <Typography
+                className="text"
+                variant="h6"
+                sx={{
+                  color: "text.primary",
+                  fontWeight: 500,
+                  transition: "all 0.3s ease",
+                }}
+              >
+                {tech.name}
+              </Typography>
+            </Paper>
           ))}
         </Box>
       </Box>

@@ -1,16 +1,13 @@
 import React from "react";
+import { FaReact, FaNodeJs, FaDocker, FaGithub, FaAws } from "react-icons/fa";
 import {
-  Code,
-  DataObject,
-  Storage,
-  Cloud,
-  GitHub,
-  Language,
-  Web,
-  IntegrationInstructions,
-  Terminal,
-  AccountTree,
-} from "@mui/icons-material";
+  SiTypescript,
+  SiDotnet,
+  SiMui,
+  SiJavascript,
+  SiMongodb,
+  SiPostgresql,
+} from "react-icons/si";
 
 interface TechIconProps {
   iconName: string;
@@ -18,28 +15,29 @@ interface TechIconProps {
 }
 
 const iconMap: Record<string, React.ElementType> = {
-  react: Code,
-  typescript: DataObject,
-  nodejs: Terminal,
-  dotnet: IntegrationInstructions,
-  mui: Web,
-  database: Storage,
-  cloud: Cloud,
-  docker: AccountTree,
-  git: GitHub,
-  javascript: Language,
+  react: FaReact,
+  typescript: SiTypescript,
+  nodejs: FaNodeJs,
+  dotnet: SiDotnet,
+  mui: SiMui,
+  mongodb: SiMongodb,
+  postgresql: SiPostgresql,
+  aws: FaAws,
+  docker: FaDocker,
+  git: FaGithub,
+  javascript: SiJavascript,
 };
 
 const TechIcon: React.FC<TechIconProps> = ({ iconName, size = "medium" }) => {
-  const IconComponent = iconMap[iconName] || Code;
+  const IconComponent = iconMap[iconName.toLowerCase()] || FaReact;
 
   const sizeMap = {
-    small: { fontSize: "1rem" },
-    medium: { fontSize: "1.25rem" },
-    large: { fontSize: "1.5rem" },
+    small: { fontSize: "1.5rem" },
+    medium: { fontSize: "2rem" },
+    large: { fontSize: "2.5rem" },
   };
 
-  return <IconComponent sx={sizeMap[size]} />;
+  return <IconComponent style={sizeMap[size]} />;
 };
 
 export default TechIcon;

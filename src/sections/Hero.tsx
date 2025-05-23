@@ -82,13 +82,16 @@ const Hero = () => {
         <div ref={nameRef}>
           <Typography
             variant="h4"
-            sx={{
+            sx={(theme) => ({
               mb: 2,
               fontWeight: 400,
-              color: "text.secondary",
+              color:
+                theme.palette.mode === "dark"
+                  ? "text.secondary"
+                  : "primary.main",
               zIndex: 1,
               position: "relative",
-            }}
+            })}
           >
             {" "}
             {hero.greeting}
@@ -101,7 +104,7 @@ const Hero = () => {
               background:
                 theme.palette.mode === "dark"
                   ? "linear-gradient(135deg, #ffffff 0%, #64b5f6 100%)"
-                  : "linear-gradient(135deg, #1a1a1a 0%, #1976d2 100%)",
+                  : "linear-gradient(135deg, #1e88e5 0%, #0d47a1 100%)",
               backgroundClip: "text",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -114,16 +117,16 @@ const Hero = () => {
         <div ref={taglineRef}>
           <Typography
             variant="h3"
-            sx={{
+            sx={(theme) => ({
               mb: 8,
               fontWeight: 400,
-              color: "text.primary",
+              color: theme.palette.mode === "dark" ? "text.primary" : "#102a43",
               maxWidth: "800px",
               lineHeight: 1.4,
               px: { xs: 2, md: 0 },
               zIndex: 1,
               position: "relative",
-            }}
+            })}
           >
             {hero.tagline}
           </Typography>
@@ -139,16 +142,22 @@ const Hero = () => {
           <IconButton
             onClick={scrollToNext}
             sx={(theme) => ({
-              color: "text.secondary",
+              color:
+                theme.palette.mode === "dark"
+                  ? "text.secondary"
+                  : "primary.dark",
               fontSize: "2rem",
               zIndex: 1,
               position: "relative",
               "&:hover": {
-                color: "secondary.main",
+                color:
+                  theme.palette.mode === "dark"
+                    ? "secondary.main"
+                    : "primary.main",
                 backgroundColor:
                   theme.palette.mode === "dark"
                     ? "rgba(100, 181, 246, 0.1)"
-                    : "rgba(25, 118, 210, 0.1)",
+                    : "rgba(25, 118, 210, 0.08)",
               },
             })}
             aria-label={hero.scrollPrompt}
@@ -157,11 +166,14 @@ const Hero = () => {
           </IconButton>
           <Typography
             variant="body2"
-            sx={{
+            sx={(theme) => ({
               mt: 1,
-              color: "text.secondary",
+              color:
+                theme.palette.mode === "dark"
+                  ? "text.secondary"
+                  : "primary.dark",
               fontSize: "0.875rem",
-            }}
+            })}
           >
             {hero.scrollPrompt}
           </Typography>
