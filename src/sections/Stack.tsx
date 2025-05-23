@@ -1,37 +1,40 @@
+import { useRef, useEffect } from "react";
 import { Box, Typography, Chip } from "@mui/material";
-import { motion } from "framer-motion";
+import { gsap } from "gsap";
 import SectionWrapper from "../components/SectionWrapper";
+import TechIcon from "../components/TechIcon";
 import { portfolioData } from "../data/content";
 
 const Stack = () => {
   const { techStack } = portfolioData;
+  const chipsRef = useRef<HTMLDivElement>(null);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
+  useEffect(() => {
+    const chips = chipsRef.current?.children;
+    if (!chips) return;
 
-  const chipVariants = {
-    hidden: {
+    // Set initial state
+    gsap.set(chips, {
       opacity: 0,
-      y: 20,
+      y: 30,
       scale: 0.8,
-    },
-    visible: {
+    });
+
+    // Create staggered animation
+    gsap.to(chips, {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: chipsRef.current,
+        start: "top 80%",
+        once: true,
       },
-    },
-  };
+    });
+  }, []);
 
   return (
     <SectionWrapper id="tech-stack" py={12}>
@@ -46,7 +49,6 @@ const Stack = () => {
         >
           Tech Stack
         </Typography>
-
         <Typography
           variant="h5"
           sx={{
@@ -60,50 +62,47 @@ const Stack = () => {
         >
           {techStack.title}
         </Typography>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={containerVariants}
+        <Box
+          ref={chipsRef}
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 2,
+            justifyContent: "center",
+            maxWidth: "800px",
+            mx: "auto",
+          }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              justifyContent: "center",
-              maxWidth: "800px",
-              mx: "auto",
-            }}
-          >
-            {techStack.technologies.map((tech, index) => (
-              <motion.div key={index} variants={chipVariants}>
-                <Chip
-                  label={tech.name}
-                  variant="outlined"
-                  sx={{
-                    fontSize: "1rem",
-                    fontWeight: 500,
-                    px: 2,
-                    py: 1,
-                    height: "auto",
-                    color: "text.primary",
-                    borderColor: "text.secondary",
-                    backgroundColor: "rgba(100, 181, 246, 0.05)",
-                    "&:hover": {
-                      borderColor: "secondary.main",
-                      backgroundColor: "rgba(100, 181, 246, 0.15)",
-                      transform: "translateY(-2px)",
-                      boxShadow: "0 4px 20px rgba(100, 181, 246, 0.3)",
-                    },
-                    transition: "all 0.3s ease",
-                  }}
-                />
-              </motion.div>
-            ))}
-          </Box>
-        </motion.div>
+          {techStack.technologies.map((tech, index) => (
+            <Chip
+              key={index}
+              icon={<TechIcon iconName={tech.icon} size="small" />}
+              label={tech.name}
+              variant="outlined"
+              sx={{
+                fontSize: "1rem",
+                fontWeight: 500,
+                px: 2,
+                py: 1,
+                height: "auto",
+                color: "text.primary",
+                borderColor: "text.secondary",
+                backgroundColor: "rgba(100, 181, 246, 0.05)",
+                "&:hover": {
+                  borderColor: "secondary.main",
+                  backgroundColor: "rgba(100, 181, 246, 0.15)",
+                  transform: "translateY(-2px)",
+                  boxShadow: "0 4px 20px rgba(100, 181, 246, 0.3)",
+                },
+                transition: "all 0.3s ease",
+                "& .MuiChip-icon": {
+                  color: "secondary.main",
+                  marginLeft: "8px",
+                },
+              }}
+            />
+          ))}
+        </Box>
       </Box>
     </SectionWrapper>
   );

@@ -1,166 +1,171 @@
-import { Box, Typography, IconButton } from '@mui/material';
-import { motion } from 'framer-motion';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import SectionWrapper from '../components/SectionWrapper';
-import { portfolioData } from '../data/content';
+import { useRef, useEffect } from "react";
+import { Box, Typography, IconButton } from "@mui/material";
+import { gsap } from "gsap";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import SectionWrapper from "../components/SectionWrapper";
+import { portfolioData } from "../data/content";
 
 const Hero = () => {
   const { hero } = portfolioData;
+  const nameRef = useRef<HTMLDivElement>(null);
+  const taglineRef = useRef<HTMLDivElement>(null);
+  const arrowRef = useRef<HTMLDivElement>(null);
 
-  const nameVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
+  useEffect(() => {
+    const tl = gsap.timeline();
+
+    // Set initial states
+    gsap.set([nameRef.current, taglineRef.current, arrowRef.current], {
+      opacity: 0,
+      y: 30,
+    });
+
+    // Animate elements in sequence
+    tl.to(nameRef.current, {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
+      duration: 0.8,
+      ease: "power2.out",
+    })
+      .to(
+        taglineRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+        },
+        "-=0.4"
+      )
+      .to(
+        arrowRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+        },
+        "-=0.4"
+      );
 
-  const taglineVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        delay: 0.3,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const arrowVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        delay: 0.6
-      }
-    },
-    bounce: {
-      y: [0, -10, 0],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  };
+    // Bounce animation for arrow
+    gsap.to(arrowRef.current, {
+      y: -10,
+      duration: 1,
+      repeat: -1,
+      yoyo: true,
+      ease: "power2.inOut",
+      delay: 1.5,
+    });
+  }, []);
 
   const scrollToNext = () => {
-    const nextSection = document.getElementById('tech-stack');
-    nextSection?.scrollIntoView({ behavior: 'smooth' });
+    const nextSection = document.getElementById("tech-stack");
+    nextSection?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <SectionWrapper id="hero" fullHeight>
+      {" "}
       <Box
         sx={{
-          textAlign: 'center',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minHeight: '100vh',
-          position: 'relative',
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "100vh",
+          position: "relative",
         }}
       >
         {/* Name and Introduction */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={nameVariants}
-        >
+        <div ref={nameRef}>
           <Typography
             variant="h4"
             sx={{
               mb: 2,
               fontWeight: 400,
-              color: 'text.secondary',
+              color: "text.secondary",
+              zIndex: 1,
+              position: "relative",
             }}
           >
+            {" "}
             {hero.greeting}
           </Typography>
           <Typography
             variant="h1"
-            sx={{
+            sx={(theme) => ({
               mb: 4,
               fontWeight: 700,
-              background: 'linear-gradient(135deg, #ffffff 0%, #64b5f6 100%)',
-              backgroundClip: 'text',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}
+              background:
+                theme.palette.mode === "dark"
+                  ? "linear-gradient(135deg, #ffffff 0%, #64b5f6 100%)"
+                  : "linear-gradient(135deg, #1a1a1a 0%, #1976d2 100%)",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            })}
           >
-            {hero.name}
+            {hero.name}{" "}
           </Typography>
-        </motion.div>
-
+        </div>
         {/* Tagline */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={taglineVariants}
-        >
+        <div ref={taglineRef}>
           <Typography
             variant="h3"
             sx={{
               mb: 8,
               fontWeight: 400,
-              color: 'text.primary',
-              maxWidth: '800px',
+              color: "text.primary",
+              maxWidth: "800px",
               lineHeight: 1.4,
               px: { xs: 2, md: 0 },
+              zIndex: 1,
+              position: "relative",
             }}
           >
             {hero.tagline}
           </Typography>
-        </motion.div>
-
+        </div>
         {/* Scroll Arrow */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={arrowVariants}
+        <div
+          ref={arrowRef}
           style={{
-            position: 'absolute',
-            bottom: '40px',
+            position: "absolute",
+            bottom: "40px",
           }}
         >
-          <motion.div
-            animate="bounce"
-            variants={arrowVariants}
+          <IconButton
+            onClick={scrollToNext}
+            sx={(theme) => ({
+              color: "text.secondary",
+              fontSize: "2rem",
+              zIndex: 1,
+              position: "relative",
+              "&:hover": {
+                color: "secondary.main",
+                backgroundColor:
+                  theme.palette.mode === "dark"
+                    ? "rgba(100, 181, 246, 0.1)"
+                    : "rgba(25, 118, 210, 0.1)",
+              },
+            })}
+            aria-label={hero.scrollPrompt}
           >
-            <IconButton
-              onClick={scrollToNext}
-              sx={{
-                color: 'text.secondary',
-                fontSize: '2rem',
-                '&:hover': {
-                  color: 'primary.main',
-                  backgroundColor: 'rgba(100, 181, 246, 0.1)',
-                },
-              }}
-              aria-label={hero.scrollPrompt}
-            >
-              <KeyboardArrowDownIcon fontSize="inherit" />
-            </IconButton>
-          </motion.div>
+            <KeyboardArrowDownIcon fontSize="inherit" />
+          </IconButton>
           <Typography
             variant="body2"
             sx={{
               mt: 1,
-              color: 'text.secondary',
-              fontSize: '0.875rem',
+              color: "text.secondary",
+              fontSize: "0.875rem",
             }}
           >
             {hero.scrollPrompt}
           </Typography>
-        </motion.div>
+        </div>
       </Box>
     </SectionWrapper>
   );

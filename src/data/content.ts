@@ -6,21 +6,20 @@ export const portfolioData = {
     tagline: "I believe in simple, focused, and meaningful software",
     scrollPrompt: "Explore my work",
   },
-
   // Tech Stack Section
   techStack: {
     title: "I create web interfaces and backend systems using:",
     technologies: [
-      { name: "React", category: "Frontend" },
-      { name: "TypeScript", category: "Language" },
-      { name: "Node.js", category: "Backend" },
-      { name: ".NET", category: "Backend" },
-      { name: "MUI", category: "UI Library" },
-      { name: "MongoDB", category: "Database" },
-      { name: "PostgreSQL", category: "Database" },
-      { name: "AWS", category: "Cloud" },
-      { name: "Docker", category: "DevOps" },
-      { name: "Git", category: "Version Control" },
+      { name: "React", category: "Frontend", icon: "react" },
+      { name: "TypeScript", category: "Language", icon: "typescript" },
+      { name: "Node.js", category: "Backend", icon: "nodejs" },
+      { name: ".NET", category: "Backend", icon: "dotnet" },
+      { name: "MUI", category: "UI Library", icon: "mui" },
+      { name: "MongoDB", category: "Database", icon: "database" },
+      { name: "PostgreSQL", category: "Database", icon: "database" },
+      { name: "AWS", category: "Cloud", icon: "cloud" },
+      { name: "Docker", category: "DevOps", icon: "docker" },
+      { name: "Git", category: "Version Control", icon: "git" },
     ],
   },
 
