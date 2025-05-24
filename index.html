@@ -11,13 +11,30 @@
       name="keywords"
       content="full stack developer, react, typescript, nodejs, dotnet, web development, software engineer"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Tangerine:wght@700&display=swap"
+      as="style"
+      crossorigin
     />
-    <title>Ayyan - Full Stack Developer</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Tangerine:wght@700&display=swap"
+      crossorigin
+    />
+    <style>
+      #root {
+        opacity: 0;
+        transition: opacity 0.3s ease-in;
+      }
+      #root.loaded {
+        opacity: 1;
+      }
+      .content {
+        opacity: 0;
+      }
+    </style>
+    <title>One step closer, one smile stronger ☺️</title>
   </head>
   <body>
     <div id="root"></div>

@@ -29,61 +29,72 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
 }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const coverRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const cover = coverRef.current;
+    const ctx = gsap.context(
+      () => {
+        const section = sectionRef.current;
+        const cover = coverRef.current;
+        const content = contentRef.current;
 
-    if (!section || !cover) return;
+        if (!section || !cover || !content) return;
 
-    // Set initial state
-    gsap.set(cover, {
-      scaleY: 1,
-      transformOrigin: "bottom",
-    });
+        // Set initial states
+        gsap.set([cover, content], {
+          opacity: 0,
+        });
 
-    gsap.set(section.querySelector(".content"), {
-      y: 50,
-      opacity: 0,
-    });
+        gsap.set(cover, {
+          scaleY: 1,
+          transformOrigin: "bottom",
+        });
 
-    // Create timeline
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top 80%",
-        end: "top 20%",
-        scrub: false,
-        once: true,
-      },
-    });
+        gsap.set(content, {
+          y: 50,
+        });
 
-    // Animate cover reveal
-    tl.to(cover, {
-      scaleY: 0,
-      duration: 0.8,
-      ease: "power2.inOut",
-    })
-      // Animate content
-      .to(
-        section.querySelector(".content"),
-        {
-          y: 0,
+        // Create timeline for animations
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            once: true,
+          },
+          onComplete: () => {
+            // Cleanup after animation
+            if (cover) {
+              cover.style.display = "none";
+            }
+          },
+        });
+
+        // Stagger the animations
+        tl.to(cover, {
           opacity: 1,
-          duration: 0.6,
-          ease: "power2.out",
-        },
-        "-=0.3"
-      );
+          duration: 0.1,
+        })
+          .to(cover, {
+            scaleY: 0,
+            duration: 0.8,
+            ease: "power2.inOut",
+          })
+          .to(
+            content,
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "power2.out",
+            },
+            "-=0.3"
+          );
+      },
+      sectionRef // Scope animations to section
+    );
 
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.trigger === section) {
-          trigger.kill();
-        }
-      });
-    };
-  }, []);
+    return () => ctx.revert(); // Clean up animations
+  }, []); // Empty dependency array since we're using refs
 
   return (
     <Box
@@ -98,6 +109,7 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
         py: fullHeight ? 0 : py,
         backgroundColor: backgroundColor || "transparent",
         overflow: "hidden",
+        visibility: "visible", // Ensure content is visible
         ...sx,
       }}
     >
@@ -120,7 +132,9 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
         maxWidth={maxWidth}
         sx={{ width: "100%", position: "relative", zIndex: 2 }}
       >
-        <div className="content">{children}</div>
+        <div ref={contentRef} className="content">
+          {children}
+        </div>
       </Container>
     </Box>
   );

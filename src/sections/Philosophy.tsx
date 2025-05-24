@@ -41,12 +41,25 @@ const Philosophy = () => {
         <Typography
           variant="h2"
           sx={{
-            mb: 8,
+            mb: 2,
             fontWeight: 600,
             color: "text.primary",
           }}
         >
           {philosophy.title}
+        </Typography>
+        <Typography
+          variant="h5"
+          sx={{
+            mb: 8,
+            fontWeight: 400,
+            color: "text.secondary",
+            maxWidth: "600px",
+            mx: "auto",
+            lineHeight: 1.6,
+          }}
+        >
+          {philosophy.subtitle}
         </Typography>
 
         <Box
@@ -72,13 +85,13 @@ const Philosophy = () => {
                   backgroundColor:
                     theme.palette.mode === "dark"
                       ? "rgba(18, 18, 18, 0.6)"
-                      : "rgba(248, 250, 252, 0.8)", // Light blue-grey background
+                      : "rgba(248, 250, 252, 0.8)",
                   backdropFilter: "blur(10px)",
                   border: "1px solid",
                   borderColor:
                     theme.palette.mode === "dark"
                       ? "rgba(255, 255, 255, 0.1)"
-                      : "rgba(226, 232, 240, 0.6)", // Subtle border for light mode
+                      : "rgba(226, 232, 240, 0.6)",
                   borderRadius: 3,
                   transition: "all 0.3s ease",
                   "&:hover": {
@@ -86,7 +99,7 @@ const Philosophy = () => {
                     backgroundColor:
                       theme.palette.mode === "dark"
                         ? "rgba(18, 18, 18, 0.8)"
-                        : "rgba(255, 255, 255, 0.95)", // Slightly whiter on hover
+                        : "rgba(255, 255, 255, 0.95)",
                     boxShadow:
                       theme.palette.mode === "dark"
                         ? "0 20px 40px rgba(100, 181, 246, 0.15)"
@@ -107,7 +120,7 @@ const Philosophy = () => {
                       color:
                         theme.palette.mode === "dark"
                           ? "text.primary"
-                          : "primary.dark", // Darker blue for better contrast
+                          : "primary.dark",
                       lineHeight: 1.3,
                     })}
                   >
@@ -119,7 +132,7 @@ const Philosophy = () => {
                       color:
                         theme.palette.mode === "dark"
                           ? "text.secondary"
-                          : "text.primary", // Better contrast for description
+                          : "text.primary",
                       lineHeight: 1.7,
                       fontSize: "1.1rem",
                     })}

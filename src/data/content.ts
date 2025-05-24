@@ -1,31 +1,21 @@
 export const portfolioData = {
-  // Hero Section
   hero: {
-    name: "Ayyan",
+    name: "Your Name",
     greeting: "Hey, I'm",
-    tagline: "I believe in simple, focused, and meaningful software",
-    scrollPrompt: "Explore my work",
+    tagline: "I believe in simple, focused, and meaningful solutions.",
+    scrollPrompt: "For more",
   },
-  // Tech Stack Section
   techStack: {
-    title: "I create web interfaces and backend systems using:",
+    title: "The least I know, A lot more to learn !!",
     technologies: [
-      { name: "React", category: "Frontend", icon: "react" },
-      { name: "TypeScript", category: "Language", icon: "typescript" },
-      { name: "Node.js", category: "Backend", icon: "nodejs" },
-      { name: ".NET", category: "Backend", icon: "dotnet" },
-      { name: "MUI", category: "UI Library", icon: "mui" },
-      { name: "MongoDB", category: "Database", icon: "mongodb" },
-      { name: "PostgreSQL", category: "Database", icon: "postgresql" },
-      { name: "AWS", category: "Cloud", icon: "aws" },
-      { name: "Docker", category: "DevOps", icon: "docker" },
-      { name: "Git", category: "Version Control", icon: "git" },
+      // { name: "React", category: "Frontend", icon: "react" },
+      // Your own tech stack items
     ],
   },
-
-  // Philosophy Section
   philosophy: {
-    title: "My Development Philosophy",
+    title: "Build with Intention",
+    subtitle:
+      "Driven by purpose. Focused on what matters. Designed for clarity.",
     principles: [
       {
         id: 1,
@@ -47,34 +37,28 @@ export const portfolioData = {
       },
     ],
   },
-
-  // Contact Section
   contact: {
-    title: "Let's Connect",
-    subtitle: "Open to collaborations and freelance opportunities",
-    email: "your.email@example.com", // Replace with your actual email
+    title: "Great things start with a Hello 👋",
+    subtitle: "Connections that push boundaries, break limits, and inspire!",
+    email: "yourmail@mail.com", // Replace with your email
     social: [
       {
         platform: "GitHub",
-        url: "https://github.com/yourusername", // Replace with your GitHub
+        url: "https://github.com/username", // Replace with yours
         icon: "GitHub",
       },
       {
         platform: "LinkedIn",
-        url: "https://linkedin.com/in/yourprofile", // Replace with your LinkedIn
+        url: "https://www.linkedin.com/in/username/", // Replace with yours
         icon: "LinkedIn",
       },
+      {
+        platform: "Insta",
+        url: "https://www.instagram.com/username/", // Replace with yours
+        icon: "Instagram",
+      },
     ],
-    signature: "Ayyan",
-  },
-
-  // SEO & Meta
-  meta: {
-    title: "Ayyan - Full Stack Developer",
-    description:
-      "Full stack developer focused on creating simple, meaningful solutions",
-    keywords:
-      "full stack developer, react, typescript, nodejs, dotnet, web development, software engineer",
+    signature: "your name",
   },
 };
 

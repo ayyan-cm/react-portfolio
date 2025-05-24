@@ -42,7 +42,7 @@ const Stack = () => {
         <Typography
           variant="h2"
           sx={{
-            mb: 6,
+            mb: 2,
             fontWeight: 600,
             color: "text.primary",
           }}
@@ -90,7 +90,7 @@ const Stack = () => {
                 backgroundColor:
                   theme.palette.mode === "dark"
                     ? "rgba(100, 181, 246, 0.05)"
-                    : "rgba(37, 99, 235, 0.02)", // Subtle blue tint for light mode
+                    : "rgba(37, 99, 235, 0.02)",
                 borderRadius: 2,
                 border: "1px solid",
                 borderColor: "divider",
@@ -100,12 +100,12 @@ const Stack = () => {
                   backgroundColor:
                     theme.palette.mode === "dark"
                       ? "rgba(100, 181, 246, 0.1)"
-                      : "rgba(37, 99, 235, 0.05)", // Slightly stronger blue tint on hover
+                      : "rgba(37, 99, 235, 0.05)",
                   borderColor: "secondary.main",
                   boxShadow:
                     theme.palette.mode === "dark"
                       ? "0 8px 24px rgba(100, 181, 246, 0.15)"
-                      : "0 8px 24px rgba(37, 99, 235, 0.08)", // Softer shadow for light mode
+                      : "0 8px 24px rgba(37, 99, 235, 0.08)",
                   "& .icon": {
                     color: "secondary.main",
                     transform: "scale(1.1)",

@@ -9,11 +9,13 @@ The website is currently running locally at `http://localhost:5173/`
 ## ✨ Features
 
 - **Modern Tech Stack**: React 18 + TypeScript + Vite
-- **Dark Theme**: Beautiful dark mode design with soft backgrounds and high-contrast text
+- **Theme Options**: Dark/Light theme toggle with smooth transitions
 - **Smooth Animations**: Framer Motion for scroll-based transitions and hover effects
 - **Responsive Design**: Mobile-first approach with MUI Grid system
 - **Typography**: Space Grotesk font family for modern, clean aesthetics
 - **Interactive Elements**: Hover animations and smooth scroll navigation
+- **Context Management**: React Context for theme state management
+- **Custom Hooks**: Reusable hooks for theme and animations
 
 ## 🛠️ Tech Stack
 
@@ -29,7 +31,12 @@ The website is currently running locally at `http://localhost:5173/`
 ```
 src/
 ├── components/          # Reusable UI components
-│   └── SectionWrapper.tsx
+│   ├── SectionWrapper.tsx
+│   ├── TechIcon.tsx
+│   └── ThemeToggle.tsx
+├── contexts/           # React Context providers
+│   ├── theme-context.ts
+│   └── ThemeContext.tsx
 ├── sections/           # Main portfolio sections
 │   ├── Hero.tsx       # Landing section with intro
 │   ├── Stack.tsx      # Tech stack display
@@ -37,10 +44,32 @@ src/
 │   └── Contact.tsx    # Contact information
 ├── data/              # Content data
 │   └── content.ts     # Portfolio content and configuration
+├── hooks/             # Custom React hooks
+│   └── useTheme.ts    # Theme management hook
 ├── theme.ts           # MUI theme configuration
 ├── App.tsx            # Main app component
-└── main.tsx           # App entry point
+└── main.tsx          # App entry point
 ```
+
+## 🧩 Components Overview
+
+### Core Components
+
+- **SectionWrapper**: Wrapper component providing consistent animations and styling for sections
+- **TechIcon**: Component for displaying technology icons in the Stack section
+- **ThemeToggle**: Theme switcher component for toggling between dark and light modes
+
+### Context and Hooks
+
+- **ThemeContext**: Manages the theme state across the application
+- **useTheme**: Custom hook for accessing and updating theme settings
+
+### Main Sections
+
+- **Hero**: Landing section introducing the portfolio
+- **Stack**: Interactive display of technical skills and technologies
+- **Philosophy**: Core values and development principles
+- **Contact**: Contact information and social links
 
 ## 🎨 Design Philosophy
 
@@ -164,59 +193,4 @@ The portfolio is fully responsive with breakpoints:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [Material-UI](https://mui.com/) for the component library
-- [Framer Motion](https://www.framer.com/motion/) for animations
-- [Vite](https://vitejs.dev/) for the build tool
-- [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) for typography
-
----
-
 Built with ❤️ by Ayyan
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    "react-x": reactX,
-    "react-dom": reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs["recommended-typescript"].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
-```

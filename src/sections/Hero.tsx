@@ -66,7 +66,6 @@ const Hero = () => {
 
   return (
     <SectionWrapper id="hero" fullHeight>
-      {" "}
       <Box
         sx={{
           textAlign: "center",
@@ -88,19 +87,20 @@ const Hero = () => {
               color:
                 theme.palette.mode === "dark"
                   ? "text.secondary"
-                  : "primary.main",
+                  : "text.secondary",
               zIndex: 1,
               position: "relative",
             })}
           >
-            {" "}
             {hero.greeting}
           </Typography>
           <Typography
             variant="h1"
             sx={(theme) => ({
               mb: 4,
-              fontWeight: 700,
+              fontFamily: "'Outfit', sans-serif",
+              fontSize: { xs: "3rem", md: "4rem" },
+              fontWeight: 500,
               background:
                 theme.palette.mode === "dark"
                   ? "linear-gradient(135deg, #ffffff 0%, #64b5f6 100%)"
@@ -108,9 +108,13 @@ const Hero = () => {
               backgroundClip: "text",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
+              textShadow:
+                theme.palette.mode === "dark"
+                  ? "0 0 20px rgba(100, 181, 246, 0.2)"
+                  : "0 0 20px rgba(25, 118, 210, 0.1)",
             })}
           >
-            {hero.name}{" "}
+            {hero.name}
           </Typography>
         </div>
         {/* Tagline */}
